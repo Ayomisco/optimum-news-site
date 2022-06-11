@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'auth_system',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -191,3 +192,6 @@ EMAIL_HOST_PASSWORD = 'abbezivukybreyml'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
+WHITENOISE_USE_FINDERS = True
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
