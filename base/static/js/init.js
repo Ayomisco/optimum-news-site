@@ -21,10 +21,10 @@
 
 // Or with jQuery
 
-$(document).ready(function () {
-  $('.modal').modal();
-  $('.tooltipped').tooltip();
-  $(".dropdown-trigger").dropdown();
+// $(document).ready(function () {
+//   $('.modal').modal();
+//   $('.tooltipped').tooltip();
+//   $(".dropdown-trigger").dropdown();
 
 
-});
+// });
