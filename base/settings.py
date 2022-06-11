@@ -175,7 +175,7 @@ MESSAGE_TAGS = {
 }
 
 # Specifyhing url django should redirect users after login
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
 
