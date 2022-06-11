@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+  {% block banner %}
+  <div class="row">
+    <div class="col s12 m12 center-align " style="background-color: #ddd;">
+      <i class="medium material-icons">apps</i>
+      <h5>-----Category-----</h5>
+      <h3 class="center">Technology</h3>
+    </div>
+  </div>
+  {% endblock %}
+
+  
+  {% block content %}
+      <!--   Icon Section   -->
+        <div class="row">
+
+          {% for article in articles %}
+          
+          <div class="col s12 m6 13 ">
+            <div class="card large">
+              <div class="card-image">
+                {% if article.picture %}
+                <a href="{{ article.get_absolute_url }}">
+                  <img src="{{ article.picture.url }}">
+                </a>
+                <a href="{{ article.get_absolute_url }}">
+                  <span class="card-title">{{ article.title}}</span>
+                </a>
+                {% else %}
+                <a href="{{ article.get_absolute_url }}">
+                  <img src="{% static 'images/default-thumbnail.jpg' %}">
+                </a>
+                <a href="{{ article.get_absolute_url }}">
+                  <span class="card-title">{{ article.title}}</span>
+                </a>
+                {% endif %}
+              </div>
+              <div class="card-content ">
+                {{ article.content|truncatechars:250 }}
+              </div>
+              <div class="card-action">
+                <a href="{{ article.get_absolute_url }}">Read More</a>
+              </div>
+            </div>
+          </div>
+          
+          {% endfor %}
+
+
+          
+        </div>
+
+    {% endblock %}
+
+
+      {% block pagination %}
+      <ul class="pagination center-align">
+        {% if articles.has_previous %}
+        <a href="?page={{ articles.previous_page_number }}" class="waves-effect waves-light btn"><i
+            class="material-icons left">arrow_back</i>Back</a>
+        {% endif %}
+      
+        {% if articles.has_next %}
+        <a href="?page={{ articles.next_page_number }}" class="waves-effect waves-light btn"><i
+            class="material-icons left">add</i>Load More</a>
+        {% endif %}
+      
+        {% endblock %}
+
+
+
+ 

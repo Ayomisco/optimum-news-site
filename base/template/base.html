@@ -1,0 +1,243 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Optimum Blog - Home</title>
+    
+    <!-- CSS  -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css' %} " type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'css/style.css' %} " type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+
+    <!-- Navigation Start Here -->
+    <!-- Category Dropdown -->
+    <ul id="dropdown1" class="dropdown-content">
+        {% for category in categories %}
+        <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <!-- Users Dropdown -->
+    <ul id="dropdownuser1" class="dropdown-content">
+        {% for category in categories %}
+        <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{% url 'index' %}" class="brand-logo m">Logo</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Search <i class="material-icons right">search</i></a>
+                </li>
+                <!-- <li><a class="modal-trigger" data-target="modal1">Search</a></li> -->
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+
+                <!-- Category Dropdown Trigger -->
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categories<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
+                <li>
+
+                {% if  user.is_authenticated %}
+                <a href="{% url 'profile' user.username %}">
+                    {{ user.username }} <i class="material-icons right">account_circle</i>
+                </a>
+                    {% else %}
+                    <a href="{% url 'login' %}">Login
+                
+                     <i class="material-icons right">account_circle</i></a>
+                    {% endif %}</li>
+
+                    {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}" > Logout<i class="material-icons right">settings_power</i></a></li>
+                    {% endif %}
+
+
+                
+
+
+            </ul>
+
+
+            
+
+            <!-- Mobile View Starts -->
+            <ul id="dropdown2" class="dropdown-content">
+                {% for category in categories %}
+                <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                {% endfor %}
+            </ul>
+
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Categories<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
+                <li>
+                    {% if user.is_authenticated %}
+                    <a href="#">
+                        {{ user.username }} <i class="material-icons right">account_circle</i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'login' %}">Login
+                
+                        <i class="material-icons right">account_circle</i></a>
+                    {% endif %}
+                </li>
+                
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}"> Logout<i class="material-icons right">settings_power</i></a></li>
+                {% endif %}
+
+
+                <li><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Search<i class="material-icons right">search</i></a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+
+
+    </nav>
+    <!-- Navigation Ends Here -->
+
+
+    <!-- Search Start here-->
+        
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+            <h4>Search: </h4>
+            <form action="" method="GET" >
+                <input type="text" name="q" placeholder="Search articles..." >
+                <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Search
+                    <i class="material-icons right">search</i>
+                </button> -->
+                <input type="submit" value="Search">
+            </form>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+  <!-- Search Ends -->
+
+    {% block banner %}
+    
+    {% endblock %}
+
+
+<!-- Main -->
+    <div class="container">
+        <div class="section">
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% block content %}
+
+            {% endblock %}
+
+            
+            {% block pagination %}
+                
+            {% endblock pagination %}
+                
+
+
+            
+        </div>
+    </div>
+
+    <!-- Main Ends -->
+
+
+
+
+
+
+    <!-- Footer Start Here -->
+
+    <footer class="page-footer teal">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">This is me Ayomide working on this project like
+                        it's my full time job. Practicing to improve my coding skills</p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Categories</h5>
+
+                    <ul>
+                        {% for category in categories %}
+                        <li><a class="white-text" href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Tags</h5>
+                    <ul>
+                        {% for tag in tags %}
+                        <li><a class="white-text" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Ayomide F.A </a>&copy; 2022
+            </div>
+        </div>
+    </footer>
+
+ 
+
+     Scripts-->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
+
+    <script type="text/javascript"  src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" type="text/javascript" src="{% static 'js/materialize.js ' %}"></script>
+    <script type="text/javascript"  type="text/javascript" src="{% static 'js/init.js ' %}"></script>
+
+    <script type="text/javascript" src="{% static " ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static " ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+        <script type="text/javascript">
+            // {% for error in form.errors %}
+            //     swal('{{ error }}');
+            // {% endfor %}
+        </script>
+</body>
+
+
+    
+</html>

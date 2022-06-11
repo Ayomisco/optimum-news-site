@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row center-align">
+
+    <form class="col s12"  enctype="multipart/form-data" role="form" method="post" action="">
+        {% csrf_token %}
+        <h1>Edit Profile</h1>
+        <div class="row">
+
+
+            <div class="row">
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    {{ form.first_name }}
+                    <label for="icon_prefix">First Name</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    {{ form.last_name }}
+                    <label for="icon_prefix">Last Name</label>
+                </div>
+
+                <!-- <div class="input-field col s6">
+                    {{ form.username }}
+                    <label for="username">Username</label>
+                </div>
+
+                <div class="input-field col s6">
+                    {{ form.email }}
+                    <label for="email">Email</label>
+                </div> -->
+            </div>
+
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Profile Picture</span>
+                        {{ form.profile_pic }}
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Profile Banner</span>
+                        {{ form.profile_banner }}
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    {{ form.location }}
+                    <label for="location">Location</label>
+                </div>
+
+                <div class="input-field col s6">
+                    {{ form.url }}
+
+                    <!-- <input id="password" type="password" class="validate"> -->
+                    <label for="url">Social Media Link</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.profile_info }}
+                
+                    <!-- <input id="password" type="password" class="validate"> -->
+                    <label for="About me">Bio</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <!-- M.toast({html: 'I am a toastv!'}) -->
+                    <!-- <script>alert("{{ form.errors }}")</script> -->
+                    <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Update
+                <i class="material-icons right">send</i>
+            </button>
+
+    </form>
+</div>
+
+{% endblock content %}

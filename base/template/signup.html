@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row center-align">
+
+    <form class="col s12" role="form" method="post" action="">
+        {% csrf_token %}
+        <h1>Create an Account</h1>
+        <div class="row">
+
+        <div class="row">
+
+            <!-- <div class="input-field col s6">
+                {{ form.first_name }}
+                <label for="username">First Name</label>
+            </div>
+
+            <div class="input-field col s6">
+                {{ form.last_name }}
+                <label for="username">Last Name</label>
+            </div> -->
+
+            <div class="input-field col s6">
+                {{ form.username }}
+                <label for="username">Username</label>
+            </div>
+
+            <div class="input-field col s6">
+                {{ form.email }}
+                <label for="email">Email</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form.password }}
+                <label for="password">Password</label>
+            </div>
+
+            <div class="input-field col s6">
+                {{ form.confirm_password }}
+
+                <!-- <input id="password" type="password" class="validate"> -->
+                <label for="re-password">retype-password</label>
+            </div>
+
+            
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <!-- M.toast({html: 'I am a toastv!'}) -->
+                <!-- <script>alert("{{ form.errors }}")</script> -->
+                <span style="color: red; font-weight: bold;">{{  form.errors }}</span>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Signup
+            <i class="material-icons right">send</i>
+        </button>
+
+        <a class="btn waves-effect waves-light" href="{% url 'contact' %}" name="login">Login
+            <i class="material-icons right">account_circle</i>
+        </a>
+    </form>
+</div>
+
+{% endblock content %}
