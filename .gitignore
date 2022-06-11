@@ -2,3 +2,4 @@
 venv/
 newrelic_agent.log
 .vscode/
+staticfiles/
