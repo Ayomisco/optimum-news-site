@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
 import cloudinary_storage
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5n9ovns5^a%d5w4+%&r59sri-h1nh0(^%_o8+jpmte4hs^7#tt'
+SECRET_KEY =  config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     '*']
@@ -185,11 +186,11 @@ LOGOUT_REDIRECT_URL = 'index'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER =  'samcodeprac@gmail.com'
-EMAIL_HOST_PASSWORD = 'abbezivukybreyml'
+EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # This is Email smtp verification from command line
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -202,9 +203,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 CLOUDINARY_STORAGE = {
-  'CLOUD_NAME' : "dpy5zhquf",
-  'API_KEY' : "372586339693315",
-  'API_SECRET' : "onC8Oyg7Je1HVGyUWXNd2qHEu_g"
+  'CLOUD_NAME' : config('CLOUD_NAME'),
+  'API_KEY' : config('API_KEY'),
+  'API_SECRET' : config('API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
