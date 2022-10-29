@@ -8,6 +8,7 @@ class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 
+
 # class ContactAdmin(admin.ModelAdmin):
 #     prepopulated_fields = {"slug": ("title",)}
 

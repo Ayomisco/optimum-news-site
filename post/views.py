@@ -184,7 +184,7 @@ def Contact(request):
             message = form.save(commit=False)
             # saving it base on timezone
             message.message_date = timezone.now()
-            form.save()
+            f.ormsave()
             messages.success(request, 'Your profile is updated successfully!')
 
             return redirect('contactsuccess')

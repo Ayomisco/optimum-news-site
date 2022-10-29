@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5n9ovns5^a%d5w4+%&r59sri-h1nh0(^%_o8+jpmte4hs^7#tt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '*']
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'auth_system',
     'whitenoise.runserver_nostatic',
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 MIDDLEWARE = [
@@ -192,6 +195,16 @@ EMAIL_HOST_PASSWORD = 'abbezivukybreyml'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-WHITENOISE_USE_FINDERS = True
+WHITENOISE_USE_FINDERS = True;'  '
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
+CLOUDINARY_STORAGE = {
+  'CLOUD_NAME' : "dpy5zhquf",
+  'API_KEY' : "372586339693315",
+  'API_SECRET' : "onC8Oyg7Je1HVGyUWXNd2qHEu_g"
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
